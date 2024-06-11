@@ -35,28 +35,25 @@ char	*ft_freestr(char *str)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*new_str;
-	int		size_s1;
-	int		size_s2;
-	int		i;
+	char	*ptr;
+	char	*tmp;
+	char	*sub_s1;
 
-	size_s1 = ft_strlen_bn(s1);
-	size_s2 = ft_strlen_bn(s2);
-	new_str = malloc(sizeof(char) * (size_s1 + size_s2 + 1));
-	if (!new_str)
+	sub_s1 = s1;
+	ptr = malloc(ft_strlen_bn(s1) + ft_strlen_bn(s2) + 1);
+	if (!ptr)
 		return (ft_freestr(s1));
-	i = -1;
+	tmp = ptr;
 	if (s1)
 	{
-		while (++i, i < size_s1)
-			new_str[i] = s1[i];
-		i--;
+		while (*s1 && *s1 != '\n')
+			*tmp++ = *s1++;
 	}
-	while (++i, i < size_s1 + size_s2)
-		new_str[i] = s2[i - size_s1];
-	new_str[i] = '\0';
-	ft_freestr(s1);
-	return (new_str);
+	while (*s2 && *s2 != '\n')
+		*tmp++ = *s2++;
+	*tmp = '\0';
+	ft_freestr(sub_s1);
+	return (ptr);
 }
 
 int	ft_findchar(char c, char *str)
