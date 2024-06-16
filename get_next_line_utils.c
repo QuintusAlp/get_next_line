@@ -49,7 +49,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		while (*s1 && *s1 != '\n')
 			*tmp++ = *s1++;
 	}
-	while (*s2 && *s2 != '\n')
+	while (*s2 && *(s2 - 1) != '\n')
 		*tmp++ = *s2++;
 	*tmp = '\0';
 	ft_freestr(sub_s1);
